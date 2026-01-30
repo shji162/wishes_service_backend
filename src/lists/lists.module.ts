@@ -11,6 +11,6 @@ import { User, userSchema } from 'src/users/models/user.model';
 @Module({
   imports: [MongooseModule.forFeature([{name: List.name, schema: listSchema}]), MongooseModule.forFeature([{name: User.name, schema: userSchema}])],
   controllers: [ListsController],
-  providers: [ListsService, AuthService, JwtService, UsersService],
+  providers: [ListsService, AuthService, JwtService],
 })
 export class ListsModule {}
