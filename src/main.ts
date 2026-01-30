@@ -2,9 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import * as express from 'express';
+
+const expressApp = express();
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, new ExpressAdapter(expressApp));
   if (process.env.NODE_ENV === 'production') {
     app.useStaticAssets(join(__dirname, '..', 'client/dist'));
   }
@@ -13,9 +17,9 @@ async function bootstrap() {
   app.useBodyParser('urlencoded', { limit: '50mb', extended: true });
   await app.init()
 
-   const expressApp = app.getHttpAdapter().getInstance();
    return expressApp;
 }
 
-bootstrap();
+
+module.exports = bootstrap()
 
