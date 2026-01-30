@@ -11,6 +11,6 @@ import { User, userSchema } from 'src/users/models/user.model';
 @Module({
   imports: [MongooseModule.forFeature([{name: Wish.name, schema: wishSchema}]), MongooseModule.forFeature([{name: User.name, schema: userSchema}])],
   controllers: [WishesController],
-  providers: [WishesService, AuthService, JwtService],
+  providers: [WishesService, AuthService, JwtService, UsersService],
 })
 export class WishesModule {}
