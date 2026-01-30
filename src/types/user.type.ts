@@ -1,4 +1,4 @@
-import { Roles } from "src/enums/user.enum"
+import { Roles } from "src/users/enums/user.enum"
 
 
 export class User {
