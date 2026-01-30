@@ -12,6 +12,9 @@ async function bootstrap() {
   app.useBodyParser('json', { limit: '50mb' });
   app.useBodyParser('urlencoded', { limit: '50mb', extended: true });
   await app.init()
+
+   const expressApp = app.getHttpAdapter().getInstance();
+   return expressApp;
 }
 
 bootstrap();
